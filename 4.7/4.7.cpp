@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-	double xp, xk, x, dx, eps, a = 0, R = 0, S = 0;
+	double xp, xk, x, dx, eps, a = 0, R = 0, S = 0, arth;
 	int n = 0;
 	cout << "xp = "; cin >> xp;
 	cout << "xk = "; cin >> xk;
@@ -13,7 +13,7 @@ int main()
 	cout << fixed;
 	cout << "-------------------------------------------------" << endl;
 	cout << "|" << setw(5) << "x" << " |"
-		<< setw(10) << "exp(x)" << " |"
+		<< setw(10) << "arth(x)" << " |"
 		<< setw(7) << "S" << " |"
 		<< setw(5) << "n" << " |"
 		<< endl;
@@ -23,18 +23,19 @@ int main()
 	x = xp;
 	while (x <= xk)
 	{
-		n = 0; // вираз залежить від умови завдання варіанту
-		a = 1;
+		n = 0; 
+		a = x;
 		S = x;
+		arth = log((1 + x) / (1 - x)) / 2;
 		do {
 			n++;
-			R = pow(x,2*n+1)/2*n+1; // вираз залежить від умови завдання варіанту
+			R = x * x * (2 * n - 1) / (2 * n + 1);
 			a *= R;
 			S += a;
 		} while (abs(a) >= eps);
 		
 		cout << "|" << setw(7) << setprecision(2) << x << " |"
-			<< setw(10) << setprecision(5) << atanh(x) << " |"
+			<< setw(10) << setprecision(5) << arth << " |"
 			<< setw(10) << setprecision(5) << S << " |"
 			<< setw(5) << n << " |"
 			<< endl;
